@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CRUD de Estudiantes</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="js/storage.js" defer></script>
+  <script src="js/validation.js" defer></script>
+  <script src="js/create.js" defer></script>
+  <script src="js/read.js" defer></script>
+  <script src="js/update.js" defer></script>
+  <script src="js/delete.js" defer></script>
+</head>
+<body>
+  <header class="app-header">
+    <h1>Gestión de Estudiantes</h1>
+    <p>CRUD con HTML, CSS y JavaScript puro · datos guardados en localStorage</p>
+  </header>
+
+  <main class="container">
+    <div id="alerts" class="alerts" aria-live="polite"></div>
+
+    <section class="card" aria-labelledby="form-title">
+      <h2 id="form-title">Registrar estudiante</h2>
+
+      <form id="student-form" data-mode="create" novalidate>
+        <input type="hidden" id="student-id" name="id" value="">
+
+        <div class="grid">
+          <div class="field">
+            <label for="nombre">Nombre completo *</label>
+            <input type="text" id="nombre" name="nombre" maxlength="60"
+                   placeholder="Ej: María Pérez" autocomplete="off">
+            <small class="error-msg" data-error-for="nombre"></small>
+          </div>
+
+          <div class="field">
+            <label for="matricula">Matrícula *</label>
+            <input type="text" id="matricula" name="matricula" maxlength="9"
+                   inputmode="numeric" placeholder="2024-0001" autocomplete="off">
+            <small class="error-msg" data-error-for="matricula"></small>
+          </div>
+
+          <div class="field">
+            <label for="correo">Correo electrónico *</label>
+            <input type="email" id="correo" name="correo" maxlength="100"
+                   placeholder="maria@correo.com" autocomplete="off">
+            <small class="error-msg" data-error-for="correo"></small>
+          </div>
+
+          <div class="field">
+            <label for="telefono">Teléfono (opcional)</label>
+            <input type="tel" id="telefono" name="telefono" maxlength="12"
+                   inputmode="numeric" placeholder="809-555-1234" autocomplete="off">
+            <small class="error-msg" data-error-for="telefono"></small>
+          </div>
+
+          <div class="field">
+            <label for="carrera">Carrera *</label>
+            <select id="carrera" name="carrera">
+              <option value="">Selecciona una carrera</option>
+              <option value="Desarrollo de Software">Desarrollo de Software</option>
+              <option value="Redes de Información">Redes de Información</option>
+              <option value="Ciberseguridad">Ciberseguridad</option>
+              <option value="Inteligencia Artificial">Inteligencia Artificial</option>
+              <option value="Multimedia">Multimedia</option>
+            </select>
+            <small class="error-msg" data-error-for="carrera"></small>
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <button type="submit" id="btn-submit" class="btn btn-primary">Guardar</button>
+          <button type="button" id="btn-cancel" class="btn btn-secondary hidden">Cancelar edición</button>
+        </div>
+      </form>
+    </section>
+
+    <section class="card" aria-labelledby="list-title">
+      <div class="list-header">
+        <h2 id="list-title">Listado de estudiantes</h2>
+        <span id="count" class="badge">0 estudiantes</span>
+      </div>
+
+      <input type="search" id="search" class="search"
+             placeholder="Buscar por nombre, matrícula, correo o carrera..."
+             aria-label="Buscar estudiantes">
+
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Nombre</th>
+              <th>Matrícula</th>
+              <th>Correo</th>
+              <th>Teléfono</th>
+              <th>Carrera</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody id="students-body">
+            <tr class="empty-row"><td colspan="7">Aún no hay estudiantes registrados.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <dialog id="confirm-dialog" class="dialog" aria-labelledby="confirm-title">
+    <h3 id="confirm-title">Confirmar eliminación</h3>
+    <p id="confirm-text"></p>
+    <div class="dialog-actions">
+      <button type="button" id="confirm-cancel" class="btn btn-secondary">Cancelar</button>
+      <button type="button" id="confirm-accept" class="btn btn-danger">Sí, eliminar</button>
+    </div>
+  </dialog>
+</body>
+</html>

@@ -1,0 +1,1 @@
+// Etapa 2 (feature/read-list): listar registros.

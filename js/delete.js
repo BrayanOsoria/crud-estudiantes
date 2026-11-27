@@ -1,0 +1,1 @@
+// Etapa 4 (feature/delete-record): eliminar registros.
